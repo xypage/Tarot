@@ -1,24 +1,44 @@
 class Deck {
-	constructor() {
-		let suits = ["coeurs", "trefles", "piques", "carreaux", "atouts"];
-		this.cards = [];
-		for (let i = 0; i < 4; i++) //only goes to 4 bc atouts are different
-		{ 
-			for (let j = 0; j < 14; j++) 
-			{
-				this.add(suits[i], j + 1, false); //none are oudlers so
-			}
-		}
-		for (let i = 0; i < 21; i++)
+	constructor(_cards) {
+		if(_cards)
 		{
-			this.add(suits[4], i + 1, i == 0 || i == 20) //oudlers values off by 1 since we're working on a + 1 system
+			this.cards = _cards;
 		}
-		this.add(suits[4], 0, true) //idk how to deal w/excuse so, 0!
+		else
+		{
+			let suits = ["coeurs", "trefles", "piques", "carreaux", "atouts"];
+			this.cards = [];
+			//only goes to 4 bc atouts are different
+			for (let i = 0; i < 4; i++) 
+			{ 
+				for (let j = 0; j < 14; j++) 
+				{
+					//none are oudlers so
+					this.add(new Card(suits[i], j + 1, false)); 
+				}
+			}
+			for (let i = 0; i < 21; i++)
+			{
+				//oudlers values off by 1 since we're working on a + 1 system
+				this.add(new Card(suits[4], i + 1, i == 0 || i == 20)); 
+			}
+			//idk how to deal w/excuse so, 0!
+			this.add(new Card(suits[4], 0, true));
+		}
 	}
 
-	add(suit, val, oudlers)
+	//needs the card to be made already
+	add(card)
 	{
-		this.cards.push(new Card(suit, val, oudlers));
+		this.cards.push(card);
+	}
+
+	//maybe more efficient way exists
+	remove(card)
+	{
+		this.cards = this.cards.filter(function(elem) {
+			return !elem.equals(card);
+		});
 	}
 
 	shuffle()
@@ -32,9 +52,11 @@ class Deck {
 		}
 	}
 
+
 	show()
 	{
+		//TODO get rid of the console.log
 		console.log(this);
-		page.drawHand(this);
+		drawHand(this.cards);
 	}
 }

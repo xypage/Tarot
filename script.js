@@ -1,11 +1,12 @@
 let holder = document.getElementById("holder");
-let d;
 function drawHand(hand)
 {
+	//clear it
 	while(holder.firstChild)
 	{
 		holder.removeChild(holder.firstChild);
 	}
+	//draw it
 	for(var i = 0; i < hand.length; i++)
 	{
 		drawCard(hand[i]);
@@ -28,24 +29,35 @@ function drawCard(card)
 		cardName = card.value == 0 ? "E" : card.value;
 	}
 
-	let currCard = document.createElement("div");
-	let currValue = document.createElement("p");
+	//The overall card part
+	let currCard = document.createElement("div"); 
+	//value of card
+	let currValue = document.createElement("p"); 
 	currValue.innerHTML = cardName;
-	let currSuit = document.createElement("IMG");
-	currSuit.setAttribute("src","./CardImages/" + card.suit + ".png");
+	//suit
+	let currSuit = document.createElement("IMG"); 
+
+	//navigates to folder & then adds .png since
+	//that's the names for all the images
+	currSuit.setAttribute("src","./CardImages/" + card.suit + ".png"); 
+	
+	//puts all the parts into the container & then
+	//puts all that into the page via holder
 	currCard.appendChild(currValue);
 	currCard.appendChild(currSuit);
 	currCard.classList.add("card");
 	holder.appendChild(currCard);
 }
 
+//TODO get rid of this
 function go()
 {
-	d = new Deck();
+	let d = new Deck();
 	//d.shuffle();
-	drawHand(d.cards);
+	//drawHand(d.cards);
+	d.show();
 }
-go();
 
+go();
 
 

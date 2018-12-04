@@ -1,13 +1,19 @@
 class Player {
-	constructor(_name, startPoints) {
+	constructor(_name, startCash) {
 		this.name = _name;
-		this.points = startPoints;
-		this.deck = [];
+		this.cash = startCash;
+		let temp = new Card("atouts", 2, false);
+		this.cards = new Deck([temp]);
+		this.cards.remove(temp);
 	}
 
-	giveCards(cards) {
-		this.deck.add(cards);
+	//Has to be passed an array, even if just length 1
+	giveCards(cardArr) {
+		for(var i = 0; i < cardArr.length; i++) {
+			this.cards.add(cardArr[i]);
+		}
 	}
+
 
 
 
