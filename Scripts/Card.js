@@ -50,5 +50,19 @@ class Card {
 		cardHTML.appendChild(currSuit);
 		cardHTML.classList.add("card");
 		return cardHTML;
+	}
+
+	JSONify() {
+		return {
+			"suit": this.suit,
+			"value": this.value,
+			"oudlers": this.oudlers
 		}
+	}
+
+	fromJSON(from) {
+		this.suit = from.suit;
+		this.value = from.value;
+		this.oudlers = from.oudlers;
+	}
 }

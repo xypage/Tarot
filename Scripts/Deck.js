@@ -46,7 +46,7 @@ class Deck {
 	}
 
 	sort() {
-
+		//TODO
 	}
 
 	score() {
@@ -66,16 +66,20 @@ class Deck {
 		});
 	}
 
-	drawHand(hand)
-{
-	//clear it
-	while(holder.firstChild)
-	{
-		holder.removeChild(holder.firstChild);
+	JSONify() {
+		let JSONCards = []
+		this.cards.forEach(card => {
+			JSONCards.push(card.JSONify());
+		})
+		return {
+			"cards": JSONCards
+		}
 	}
-	//draw it
-	hand.forEach(card => {
-		drawCard(card);
-	});
-}
+
+	fromJSON(from) {
+		this.cards = [];
+		from.cards.forEach(card => {
+			this.cards.push(new Card(card.suit, card.value, card.oudlers));
+		});
+	}
 }
