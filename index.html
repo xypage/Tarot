@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="styles.css">
 		<!-- The core Firebase JS SDK is always required and must be listed first -->
 		<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
 	</head>
 
 	<body>
@@ -15,12 +16,6 @@
 		</div>	
 	</body>
 
-	<script type="text/javascript" src="./Scripts/Card.js"></script>
-	<script type="text/javascript" src="./Scripts/Deck.js"></script>
-	<script type="text/javascript" src="./Scripts/Player.js"></script>
-	<script type="text/javascript" src="./Scripts/Round.js"></script>
-	<script type="text/javascript" src="./Scripts/DataManager.js"></script>	
-	<script type="text/javascript" src="./Scripts/script.js"></script>
 	<script>
 		// Your web app's Firebase configuration
 		var firebaseConfig = {
@@ -34,6 +29,13 @@
 		};
 		// Initialize Firebase
 		firebase.initializeApp(firebaseConfig);
-		console.log(firebase);
+		const db = firebase.firestore();
 	</script>
+	<script type="text/javascript" src="./Scripts/Card.js"></script>
+	<script type="text/javascript" src="./Scripts/Deck.js"></script>
+	<script type="text/javascript" src="./Scripts/Player.js"></script>
+	<script type="text/javascript" src="./Scripts/Round.js"></script>
+	<script type="text/javascript" src="./Scripts/DataManager.js"></script>	
+	<script type="text/javascript" src="./Scripts/script.js"></script>
+	
 </html>

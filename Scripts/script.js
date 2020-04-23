@@ -17,7 +17,7 @@ function go() {
 	//drawHand(d.cards);
 	d.show();
 
-	let database = new DataManager(firebase.database());
+	//let database = new DataManager(firebase.database());
 }
 
 go();
