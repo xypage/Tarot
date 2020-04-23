@@ -2,9 +2,8 @@ class Player {
 	constructor(_name, startCash) {
 		this.name = _name;
 		this.cash = startCash;
-		let temp = new Card("atouts", 2, false);
-		this.cards = new Deck([temp]);
-		this.cards.remove(temp);
+		this.inHand = new Deck([]);
+		this.wonHands = new Deck([]);
 	}
 
 	//Has to be passed an array, even if just length 1
