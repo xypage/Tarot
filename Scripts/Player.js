@@ -1,9 +1,13 @@
 class Player {
 	constructor(_name, startCash) {
-		this.name = _name;
-		this.cash = startCash;
-		this.inHand = new Deck([]);
-		this.wonHands = [];
+		if(startCash) {
+			this.name = _name;
+			this.cash = startCash;
+			this.inHand = new Deck([]);
+			this.wonHands = [];
+		} else if(_name) { //TODO fix this, should either only use JSON to construct or need to find better name for this variable
+			this.fromJSON(_name);
+		}
 	}
 
 	//Has to be passed an array, even if just length 1
@@ -15,20 +19,18 @@ class Player {
 
 	JSONify() {
 		return {
-			"name": this.name,
-			"cash": this.cash,
-			"hand": this.inHand,
-			"winnings": this.wonHands
+			name: this.name,
+			cash: this.cash,
+			hand: this.inHand.JSONify().cards,
+			winnings: this.wonHands
 		};
 	}
 
 	fromJSON(from) {
 		this.name = from.name;
 		this.cash = from.cash;
-		this.inHand = new Deck([]).fromJSON(from.hand);
+		console.log(from.hand);
+		this.inHand = new Deck([from.hand]);
 		this.wonHands = [];
-		from.winnings.forEach(wonHand => {
-			this.wonHands.append(new Deck([]).fromJSON(wonHand));
-		});
 	}
 }

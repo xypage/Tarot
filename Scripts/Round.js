@@ -9,7 +9,7 @@ class Round {
 		//loop
 			//calls currentPlayer.play
 
-			//goes to next player
+			//goes to next player	
 		//whoever played winning card gets hand
 	}
 	

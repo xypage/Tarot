@@ -2,8 +2,13 @@ class Card {
 	constructor(_suit, _value, _oudlers) {
 		this.suit = _suit;
 		this.value = _value;
-		this.oudlers = _oudlers;
 
+		if(this.suit == "atouts" && 
+			(this.value == 0 || this.value == 1 || this.value == 21)) {
+			this.oudlers = true;
+		} else {
+			this.oudlers = false;
+		}
 		//if is oudlers
 		if(this.oudlers) { 
 			this.points = 4.5;
@@ -24,12 +29,24 @@ class Card {
 
 	build() {
 		let cardName;
-		if(this.value < 11) {
-			cardName = this.value;
-		} else if (this.suit != "atouts") {
-			cardName = (this.value == 11 ? "V" : (this.value == 12 ? "C" : (this.value == 13 ? "D" : "R")));
-		} else {
-			cardName = this.value == 0 ? "E" : this.value;
+		switch(this.value) {
+			case 11:
+				cardName = "V";
+				break;
+			case 12:
+				cardName = "C";
+				break;
+			case 13:
+				cardName = "D";
+				break;
+			case 14:
+				cardName = "R";
+				break;
+			case 0:
+				cardName = "E";
+				break;
+			default:
+				cardName = this.value;
 		}
 
 		//The overall card part
@@ -54,9 +71,10 @@ class Card {
 
 	JSONify() {
 		return {
-			"suit": this.suit,
-			"value": this.value,
-			"oudlers": this.oudlers
+			suit: this.suit,
+			value: this.value,
+			oudlers: this.oudlers,
+			points: this.points
 		}
 	}
 
@@ -64,5 +82,6 @@ class Card {
 		this.suit = from.suit;
 		this.value = from.value;
 		this.oudlers = from.oudlers;
+		this.points = from.points;
 	}
 }

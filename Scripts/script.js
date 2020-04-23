@@ -11,15 +11,13 @@ function clear() {
 }
 
 //TODO get rid of this
-function go() {
-	let d = new Deck();
-	//d.shuffle();
-	//drawHand(d.cards);
-	d.show();
-
-	//let database = new DataManager(firebase.database());
-}
-
-go();
-
-
+let players = [];
+let p = new Player("Xavier", 400);
+p.inHand = new Deck();
+p.winnings = [];
+db.collection('Players').get().then(snapshot => {
+	snapshot.docs.forEach(doc => {
+		let currentPlayer = new Player(doc.data());
+		players.push(currentPlayer);
+	})
+});

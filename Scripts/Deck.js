@@ -72,13 +72,13 @@ class Deck {
 			JSONCards.push(card.JSONify());
 		})
 		return {
-			"cards": JSONCards
+			cards: JSONCards
 		}
 	}
 
 	fromJSON(from) {
 		this.cards = [];
-		from.cards.forEach(card => {
+		from.forEach(card => {
 			this.cards.push(new Card(card.suit, card.value, card.oudlers));
 		});
 	}
